@@ -8,6 +8,6 @@ pub fn square(a: i32) -> i32 { multiply(a,a) }
 
 pub fn power(a: i32, n: i32) -> i32 {
   let mut r = 1;
-  for i in 1..(n+1) { r = r * a }
+  for _i in 1..(n+1) { r = r * a }
   r
 }

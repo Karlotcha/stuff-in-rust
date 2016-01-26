@@ -1,9 +1,9 @@
 // use if lib.rs is not present
-// mod my_functions;
-// use my_functions::*;
+mod my_functions;
+use my_functions::*;
 
-extern crate stuff;
-use stuff::my_functions::*;
+// extern crate stuff;
+// use stuff::my_functions::*;
 
 fn main() {
   println!("increment 1 => {}", increment(1));
