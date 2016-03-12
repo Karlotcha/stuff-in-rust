@@ -21,6 +21,6 @@ fn main() {
 
   println!("selection_sort => {}", vect_to_string(&selection_sort(&v)));
   println!("insertion_sort => {}", vect_to_string(&insertion_sort(&v)));
-  // println!("merge_sort     => {}", vect_to_string(merge_sort(&v)));
-  // println!("quick_sort     => {}", vect_to_string(quick_sort(&v)));
+  println!("merge_sort     => {}", vect_to_string(&merge_sort(&v)));
+  // println!("quick_sort     => {}", vect_to_string(&quick_sort(&v)));
 }

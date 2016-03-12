@@ -24,7 +24,16 @@ pub fn insertion_sort(v: &Vec<i32>) -> Vec<i32> {
   new_v
 }
 
-pub fn merge_sort(v: &Vec<i32>) -> &Vec<i32> { v }
+pub fn merge_sort(v: &Vec<i32>) -> Vec<i32> {
+  let mut new_v = v.to_vec();
+
+  if new_v.len() <= 1 {
+    new_v
+  } else {
+    let (left, right) = split(new_v);
+    merge(merge_sort(&left), merge_sort(&right))
+  }
+}
 
 pub fn quick_sort(v: &Vec<i32>) -> &Vec<i32> { v }
 
@@ -56,4 +65,19 @@ pub fn insert(mut v: Vec<i32>, e: i32) -> Vec<i32> {
   }
 
   v
+}
+
+// split an array into 2 of similar size
+pub fn split(v: Vec<i32>) -> (Vec<i32>, Vec<i32>) {
+  if v.len() <= 1 {
+    (v, vec!())
+  } else {
+    let (left, right) = (vec!(), vec!());
+    (left, right)
+  }
+}
+
+// merge 2 ordered arrays into one
+pub fn merge(left: Vec<i32>, right: Vec<i32>) -> Vec<i32> {
+  vec!()
 }
