@@ -1,9 +1,3 @@
-pub fn vect_to_string(v: &Vec<i32>) -> String {
-  let mut r = "".to_string();
-  for i in v { r = r + &i.to_string() + " " }
-  r
-}
-
 pub fn selection_sort(v: &Vec<i32>) -> Vec<i32> {
   let mut new_v = v.to_vec();
   let n = new_v.len();
@@ -22,8 +16,10 @@ pub fn selection_sort(v: &Vec<i32>) -> Vec<i32> {
 }
 
 pub fn insertion_sort(v: &Vec<i32>) -> Vec<i32> {
-  let mut new_v = v.to_vec();
-  // let n = new_v.len();
+  let mut new_v = vec!();
+  let n = new_v.len();
+
+  for e in v { new_v = insert(new_v, *e) }
 
   new_v
 }
@@ -34,11 +30,30 @@ pub fn quick_sort(v: &Vec<i32>) -> &Vec<i32> { v }
 
 // helpers
 
+// no idea if that's the Rust way (???)
+pub fn vect_to_string(v: &Vec<i32>) -> String {
+  let mut r = "".to_string();
+  for i in v { r = r + &i.to_string() + " " }
+  r
+}
+
 // swap v[i] and v[j]
 pub fn swap(mut v: Vec<i32>, i: usize, j: usize) -> Vec<i32> {
   let a = v[i];
   v[i] = v[j];
   v[j] = a;
+
+  v
+}
+
+// insert element e inside vector v
+pub fn insert(mut v: Vec<i32>, e: i32) -> Vec<i32> {
+  v.push(e);
+  let n = v.len();
+
+  for i in 0..n {
+    if v[n-1] < v[i] { v = swap(v, n-1, i) }
+  }
 
   v
 }
