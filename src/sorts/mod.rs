@@ -1,3 +1,7 @@
+// NOTA BENE
+// I am not trying to write optimised code here.
+// I am just playing around with sorting algorithms.
+
 pub fn selection_sort(v: &Vec<i32>) -> Vec<i32> {
   let mut new_v = v.to_vec();
   let n = new_v.len();
