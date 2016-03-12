@@ -31,6 +31,7 @@ pub fn merge_sort(v: &Vec<i32>) -> Vec<i32> {
     new_v
   } else {
     let (left, right) = split(new_v);
+
     merge(merge_sort(&left), merge_sort(&right))
   }
 }
@@ -69,15 +70,46 @@ pub fn insert(mut v: Vec<i32>, e: i32) -> Vec<i32> {
 
 // split an array into 2 of similar size
 pub fn split(v: Vec<i32>) -> (Vec<i32>, Vec<i32>) {
-  if v.len() <= 1 {
+  let n = v.len();
+
+  if n <= 1 {
     (v, vec!())
   } else {
-    let (left, right) = (vec!(), vec!());
+    let (mut left, mut right) = (vec!(), vec!());
+
+    for i in 0..n {
+      if i < n/2 {
+        left.push(v[i])
+      } else {
+        right.push(v[i])
+      }
+    }
+
     (left, right)
   }
 }
 
 // merge 2 ordered arrays into one
-pub fn merge(left: Vec<i32>, right: Vec<i32>) -> Vec<i32> {
-  vec!()
+pub fn merge(mut left: Vec<i32>, mut right: Vec<i32>) -> Vec<i32> {
+  let mut v = vec!();
+  let (mut i, mut j) = (0, 0);
+  let (m, n) = (left.len(), right.len());
+
+  if m == 0 { return right }
+  if n == 0 { return left  }
+
+  while i < m || j < n {
+    if i == m  { v.push(right[j]); j=j+1; continue; }
+    if j == n  { v.push(left[i]);  i=i+1; continue; }
+
+    if left[i] <= right[j] {
+      v.push(left[i]);
+      i=i+1;
+    } else {
+      v.push(right[j]);
+      j=j+1;
+    }
+  }
+
+  v
 }
