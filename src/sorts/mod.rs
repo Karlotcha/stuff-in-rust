@@ -21,7 +21,6 @@ pub fn selection_sort(v: &Vec<i32>) -> Vec<i32> {
 
 pub fn insertion_sort(v: &Vec<i32>) -> Vec<i32> {
   let mut new_v = vec!();
-  let n = new_v.len();
 
   for e in v { new_v = insert(new_v, *e); }
 
@@ -29,7 +28,7 @@ pub fn insertion_sort(v: &Vec<i32>) -> Vec<i32> {
 }
 
 pub fn merge_sort(v: &Vec<i32>) -> Vec<i32> {
-  let mut new_v = v.to_vec();
+  let new_v = v.to_vec();
 
   if new_v.len() <= 1 {
     new_v
@@ -43,7 +42,6 @@ pub fn merge_sort(v: &Vec<i32>) -> Vec<i32> {
 pub fn quick_sort(v: &Vec<i32>) -> Vec<i32> {
   if v.len() <= 1 { return v.to_vec(); }
 
-  let mut new_v = vec!();
   let mut left  = vec!();
   let mut right = vec!();
   let n = v.len();
@@ -59,7 +57,7 @@ pub fn quick_sort(v: &Vec<i32>) -> Vec<i32> {
     }
   }
 
-  new_v = quick_sort(&left);
+  let mut new_v = quick_sort(&left);
   new_v.push(pivot);
   for e in quick_sort(&right) { new_v.push(e); }
   new_v
@@ -117,7 +115,7 @@ pub fn split(v: Vec<i32>) -> (Vec<i32>, Vec<i32>) {
 }
 
 // merge 2 ordered arrays into one
-pub fn merge(mut left: Vec<i32>, mut right: Vec<i32>) -> Vec<i32> {
+pub fn merge(left: Vec<i32>, right: Vec<i32>) -> Vec<i32> {
   let mut v = vec!();
   let (mut i, mut j) = (0, 0);
   let (m, n) = (left.len(), right.len());
