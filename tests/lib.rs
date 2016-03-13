@@ -29,39 +29,30 @@ fn test_power() {
   assert_eq!(2, power(2,1));
 }
 
-// TODO - DRY these tests
-#[test]
-fn test_selection_sort() {
+fn test_sort_algorithm(sort_function:  fn(&Vec<i32>) -> Vec<i32>) {
   let v = vec![13, 25, 3, 4543, 5, 0, 5, 1, 999];
   let ordered_v = vec![0, 1 ,3 ,5 , 5, 13, 25, 999, 4543];
 
-  assert_eq!(ordered_v, selection_sort(&v));
+  assert_eq!(ordered_v, sort_function(&v));
   // assert_eq!([], selection_sort(&[]));
+}
+
+#[test]
+fn test_selection_sort() {
+  test_sort_algorithm(selection_sort);
 }
 
 #[test]
 fn test_insertion_sort() {
-  let v = vec![13, 25, 3, 4543, 5, 0, 5, 1, 999];
-  let ordered_v = vec![0, 1 ,3 ,5 , 5, 13, 25, 999, 4543];
-
-  assert_eq!(ordered_v, insertion_sort(&v));
-  // assert_eq!([], selection_sort(&[]));
+  test_sort_algorithm(insertion_sort);
 }
 
 #[test]
 fn test_merge_sort() {
-  let v = vec![13, 25, 3, 4543, 5, 0, 5, 1, 999];
-  let ordered_v = vec![0, 1 ,3 ,5 , 5, 13, 25, 999, 4543];
-
-  assert_eq!(ordered_v, merge_sort(&v));
-  // assert_eq!([], selection_sort(&[]));
+  test_sort_algorithm(merge_sort);
 }
 
 #[test]
 fn test_quick_sort() {
-  let v = vec![13, 25, 3, 4543, 5, 0, 5, 1, 999];
-  let ordered_v = vec![0, 1 ,3 ,5 , 5, 13, 25, 999, 4543];
-
-  assert_eq!(ordered_v, merge_sort(&v));
-  // assert_eq!([], selection_sort(&[]));
+  test_sort_algorithm(quick_sort);
 }
