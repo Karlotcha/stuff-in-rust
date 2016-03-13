@@ -32,9 +32,10 @@ fn test_power() {
 fn test_sort_algorithm(sort_function:  fn(&Vec<i32>) -> Vec<i32>) {
   let v = vec![13, 25, 3, 4543, 5, 0, 5, 1, 999];
   let ordered_v = vec![0, 1 ,3 ,5 , 5, 13, 25, 999, 4543];
+  let empty: Vec<i32> = vec!();
 
   assert_eq!(ordered_v, sort_function(&v));
-  // assert_eq!([], selection_sort(&[]));
+  assert_eq!(empty, sort_function(&empty));
 }
 
 #[test]
