@@ -40,7 +40,30 @@ pub fn merge_sort(v: &Vec<i32>) -> Vec<i32> {
   }
 }
 
-pub fn quick_sort(v: &Vec<i32>) -> &Vec<i32> { v }
+pub fn quick_sort(v: &Vec<i32>) -> Vec<i32> {
+  if v.len() <= 1 { return v.to_vec(); }
+
+  let mut new_v = vec!();
+  let mut left  = vec!();
+  let mut right = vec!();
+  let n = v.len();
+  let pivot = v[n/2];
+
+  for i in 0..n {
+    if i == n/2 { continue; }
+
+    if v[i] <= pivot {
+      left.push(v[i]);
+    } else {
+      right.push(v[i]);
+    }
+  }
+
+  new_v = quick_sort(&left);
+  new_v.push(pivot);
+  for e in quick_sort(&right) { new_v.push(e); }
+  new_v
+}
 
 // helpers
 
